@@ -1,0 +1,508 @@
+/* ============================================================
+   Mr. OddJobs – Task Intake Form Styles
+   Reuses the visual language from the existing homepage:
+   dark navy background, gold accents, glassmorphism,
+   Cormorant Garamond + Parkinsans, subtle borders & shadows.
+   ============================================================ */
+
+:root {
+    --bg-color: #001A33;
+    --card-bg: rgba(0, 40, 80, 0.5);
+    --border-subtle: rgba(212, 175, 55, 0.12);
+    --border-highlight: rgba(212, 175, 55, 0.3);
+    --text-primary: #EDEADE;
+    --text-muted: #BACEE9;
+    --accent-gold: #D4AF37;
+    --accent-gold-hover: #E5C158;
+    --max-width: 720px;
+    --radius-card: 20px;
+    --radius-btn: 50px;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: var(--text-primary);
+    font-family: 'Parkinsans', sans-serif;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    overflow-x: hidden;
+    padding-top: 4px;
+    min-height: 100vh;
+}
+
+/* ---- Scroll progress bar (kept for brand consistency) ---- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-gold), #fff);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* ---- Header ---- */
+.site-header {
+    position: relative;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.minimal-header .header-inner {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.brand-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.02em;
+}
+
+/* ---- Main container ---- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 6rem 1.5rem;
+}
+
+/* ---- Glass box (core card style) ---- */
+.glass-box {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-highlight);
+    border-radius: var(--radius-card);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+/* ---- Progress area ---- */
+.progress-area {
+    margin-bottom: 0.5rem;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-gold), #fff);
+    border-radius: 4px;
+    transition: width var(--transition-smooth);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* ---- Step box (question container) ---- */
+.step-box {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+/* Animation states for step transitions */
+.step-box.fade-out {
+    opacity: 0;
+    transform: translateY(6px);
+}
+.step-box.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Typography inside steps ---- */
+.step-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.step-support {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+/* ---- Inputs & Textareas ---- */
+.step-input,
+.step-textarea {
+    width: 100%;
+    background: rgba(0, 20, 40, 0.6);
+    border: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-highlight);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    font-family: 'Parkinsans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+
+.step-input:focus,
+.step-textarea:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.step-textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.step-input::placeholder,
+.step-textarea::placeholder {
+    color: rgba(186, 206, 233, 0.5);
+    font-weight: 300;
+}
+
+/* ---- Radio / Checkbox cards ---- */
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.option-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(0, 30, 60, 0.4);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.option-card:hover {
+    border-color: var(--border-highlight);
+    background: rgba(0, 40, 80, 0.6);
+}
+
+.option-card.selected {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 0 0 1px var(--accent-gold);
+}
+
+.option-card input[type="radio"],
+.option-card input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-highlight);
+    border-radius: 50%;
+    margin: 0;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    cursor: pointer;
+}
+
+.option-card input[type="radio"]:checked,
+.option-card input[type="checkbox"]:checked {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+}
+
+.option-card input[type="radio"]:checked::after,
+.option-card input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg-color);
+}
+
+.option-card input[type="checkbox"] {
+    border-radius: 6px;
+}
+
+.option-card input[type="checkbox"]:checked::after {
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+/* ---- Conditional field group ---- */
+.conditional-field {
+    margin-top: 1.2rem;
+    padding-top: 0.5rem;
+    animation: fadeIn 0.25s ease;
+}
+
+.conditional-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Buttons ---- */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn-gold,
+.btn-outline {
+    font-family: 'Parkinsans', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--accent-gold), #C19A2B);
+    color: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
+}
+
+.btn-gold:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-highlight);
+    flex: 0 0 auto;
+    padding: 1rem 1.8rem;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.btn-outline:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---- Validation message ---- */
+.form-message {
+    margin-top: 1rem;
+    min-height: 2rem;
+    font-size: 1rem;
+    color: #f4b8b8;
+    text-align: center;
+    font-weight: 500;
+    transition: opacity var(--transition-fast);
+}
+
+/* ---- Honeypot (invisible) ---- */
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* ---- Success & Error views ---- */
+.success-box,
+.error-box {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    margin-top: 3rem;
+}
+
+.success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4rem);
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.success-text {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.success-signoff {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+}
+
+.error-text {
+    font-size: 1.2rem;
+    color: #f4b8b8;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* ---- Responsive adjustments ---- */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 1rem 5rem 1rem;
+    }
+    .glass-box {
+        padding: 1.8rem 1.5rem;
+    }
+    .step-box {
+        min-height: 280px;
+    }
+    .step-question {
+        font-size: 2rem;
+    }
+    .nav-buttons {
+        flex-wrap: wrap;
+    }
+    .btn-outline {
+        flex: 1;
+        padding: 0.9rem 1.2rem;
+        font-size: 1rem;
+    }
+    .btn-gold {
+        flex: 1;
+        padding: 0.9rem 1.2rem;
+        font-size: 1rem;
+    }
+    .option-card {
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .step-question {
+        font-size: 1.7rem;
+    }
+    .step-support {
+        font-size: 0.95rem;
+    }
+    .glass-box {
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+    }
+    .nav-buttons {
+        gap: 0.6rem;
+    }
+    .btn-outline,
+    .btn-gold {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .step-box {
+        transition: none;
+    }
+    .progress-bar-fill {
+        transition: none;
+    }
+}
