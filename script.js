@@ -1,5 +1,5 @@
 // ============================================================
-// Mr. OddJobs – Task Intake Form
+// Schedule Janitor – Task Intake Form
 // Multi-step, single-question-at-a-time, Web3Forms submission.
 // No dependencies, vanilla JS, works on GitHub Pages.
 // ============================================================
@@ -143,6 +143,7 @@ const steps = [
             { label: "Instagram DM", value: "Instagram" },
             { label: "Email", value: "Email" }
         ],
+        footnote: `<strong>🔐 Heads-up:</strong> Please don't put passwords, logins, banking details or ID numbers in this form. I'll never ask for them.`,
         // Dynamic contact fields appear when options are checked
         contactFields: {
             WhatsApp: {
@@ -303,6 +304,11 @@ function renderStep(index) {
                 `;
             });
         }
+    }
+
+    // Optional footnote (e.g. security reminder on the contact step)
+    if (step.footnote) {
+        html += `<div class="security-callout">${step.footnote}</div>`;
     }
 
     // Replace content
