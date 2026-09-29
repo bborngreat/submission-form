@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Mr. OddJobs · Hand over your boring task</title>
+    <title>Task Submission Form</title>
     <!-- Google Fonts: Cormorant Garamond & Parkinsans (same as homepage) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,17 @@
 
     <!-- Main container – holds either the form or success/error states -->
     <div class="container" id="app-container">
+
+        <!-- Preflight notice: collapsible, visible on every step -->
+        <details class="preflight-notice">
+            <summary>Quick heads up before you send this</summary>
+            <div class="preflight-inner">
+                <p><span class="preflight-emoji">🤏</span> <strong>Pricing:</strong> I'll confirm whether I can do it and quote you a flat price before any work starts. Typically $5 to $30+, depending on the job.</p>
+                <p><span class="preflight-emoji">⏪</span> <strong>Revisions:</strong> One revision is included if something's off or missed from your original request.</p>
+                <p><span class="preflight-emoji">🧾</span> <strong>Payment:</strong> You only pay after you've previewed the work and you're happy with it.</p>
+                <p><span class="preflight-emoji">🔐</span> <strong>Security:</strong> Please don't put passwords, logins, banking details or ID numbers in this form. I'll never ask for them.</p>
+            </div>
+        </details>
 
         <!-- FORM VIEW (initially visible) -->
         <div id="form-view">
@@ -64,7 +75,7 @@
             <h2 class="success-title">Got it.</h2>
             <p class="success-text">Your request has been sent. I'll look it over and get back to you using the contact method you selected.</p>
             <p class="success-signoff">Talk soon.</p>
-            <a href="https://bborngreat.github.io/mroddjobs/" class="btn-gold" id="back-home-btn">Back to Mr. OddJobs</a>
+            <a href="https://bborngreat.github.io/schedule-janitor/" class="btn-gold" id="back-home-btn">Back to Mr. OddJobs</a>
         </div>
 
         <!-- ERROR VIEW (hidden by default, shown only on submission failure) -->
