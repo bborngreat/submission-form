@@ -1,596 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Parkinsans:wght@300;400;500;600&display=swap');
+
 /* ============================================================
-   Schedule Janitor – Task Intake Form Styles
-   Reuses the visual language from the existing homepage:
-   dark navy background, gold accents, glassmorphism,
-   Cormorant Garamond + Parkinsans, subtle borders & shadows.
+   Schedule Janitor – Task Directive Portal Stylesheet
+   Dark Navy theme (#001A33) with Gold accents (#D4AF37)
    ============================================================ */
 
 :root {
-    --bg-color: #001A33;
-    --card-bg: rgba(0, 40, 80, 0.5);
-    --border-subtle: rgba(212, 175, 55, 0.12);
-    --border-highlight: rgba(212, 175, 55, 0.3);
-    --text-primary: #EDEADE;
-    --text-muted: #BACEE9;
-    --accent-gold: #D4AF37;
-    --accent-gold-hover: #E5C158;
-    --max-width: 720px;
-    --radius-card: 20px;
-    --radius-btn: 50px;
-    --transition-fast: 0.2s ease;
-    --transition-smooth: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+  --bg-color: #001A33;
+  --card-bg: rgba(0, 40, 80, 0.55);
+  --border-subtle: rgba(212, 175, 55, 0.15);
+  --border-highlight: rgba(212, 175, 55, 0.35);
+  --text-primary: #EDEADE;
+  --text-muted: #BACEE9;
+  --accent-gold: #D4AF37;
+  --accent-gold-hover: #E5C158;
+  --max-width: 720px;
+  --radius-card: 20px;
+  --radius-btn: 50px;
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: var(--bg-color);
-    background-image:
-        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    color: var(--text-primary);
-    font-family: 'Parkinsans', sans-serif;
-    line-height: 1.7;
-    font-size: 1.1rem;
-    overflow-x: hidden;
-    padding-top: 4px;
-    min-height: 100vh;
+  background-color: var(--bg-color);
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text-primary);
+  font-family: 'Parkinsans', sans-serif;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  overflow-x: hidden;
+  padding-top: 4px;
+  min-height: 100vh;
 }
 
-/* ---- Scroll progress bar (kept for brand consistency) ---- */
+/* ---- Scroll progress bar ---- */
 #scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-gold), #fff);
-    width: 0%;
-    z-index: 9999;
-    transition: width 0.1s ease-out;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), #FFF);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
 
-/* ---- Header ---- */
+/* ---- Site Header ---- */
 .site-header {
-    position: relative;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1.5rem 1.5rem 0 1.5rem;
-    display: flex;
-    justify-content: center;
-    z-index: 1000;
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 1000;
 }
 
 .minimal-header .header-inner {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .brand-mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: var(--accent-gold);
-    letter-spacing: 0.02em;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.02em;
 }
 
-/* ---- Main container ---- */
+/* ---- Main Container ---- */
 .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1.5rem 1.5rem 6rem 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem 6rem 1.5rem;
 }
 
-/* ---- Glass box (core card style) ---- */
-.glass-box {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-subtle);
-    border-top: 1px solid var(--border-highlight);
-    border-radius: var(--radius-card);
-    padding: 2.5rem;
-    margin: 3rem 0;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    position: relative;
-}
-
-/* ---- Progress area ---- */
-.progress-area {
-    margin-bottom: 0.5rem;
-}
-
-.progress-text {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--accent-gold);
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-}
-
-.progress-bar-track {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent-gold), #fff);
-    border-radius: 4px;
-    transition: width var(--transition-smooth);
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-}
-
-/* ---- Step box (question container) ---- */
-.step-box {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-}
-
-/* Animation states for step transitions */
-.step-box.fade-out {
-    opacity: 0;
-    transform: translateY(6px);
-}
-.step-box.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ---- Typography inside steps ---- */
-.step-question {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    color: var(--accent-gold);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-}
-
-.step-support {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-bottom: 1.8rem;
-    line-height: 1.6;
-}
-
-/* ---- Inputs & Textareas ---- */
-.step-input,
-.step-textarea {
-    width: 100%;
-    background: rgba(0, 20, 40, 0.6);
-    border: 1px solid var(--border-subtle);
-    border-top: 1px solid var(--border-highlight);
-    border-radius: 14px;
-    padding: 1rem 1.2rem;
-    font-family: 'Parkinsans', sans-serif;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    outline: none;
-}
-
-.step-input:focus,
-.step-textarea:focus {
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-}
-
-.step-textarea {
-    min-height: 140px;
-    resize: vertical;
-    line-height: 1.6;
-}
-
-.step-input::placeholder,
-.step-textarea::placeholder {
-    color: rgba(186, 206, 233, 0.5);
-    font-weight: 300;
-}
-
-/* ---- Radio / Checkbox cards ---- */
-.options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-.option-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    background: rgba(0, 30, 60, 0.4);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    cursor: pointer;
-    transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.option-card:hover {
-    border-color: var(--border-highlight);
-    background: rgba(0, 40, 80, 0.6);
-}
-
-.option-card.selected {
-    border-color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.08);
-    box-shadow: 0 0 0 1px var(--accent-gold);
-}
-
-.option-card input[type="radio"],
-.option-card input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-highlight);
-    border-radius: 50%;
-    margin: 0;
-    flex-shrink: 0;
-    position: relative;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
-    cursor: pointer;
-}
-
-.option-card input[type="radio"]:checked,
-.option-card input[type="checkbox"]:checked {
-    border-color: var(--accent-gold);
-    background: var(--accent-gold);
-}
-
-.option-card input[type="radio"]:checked::after,
-.option-card input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--bg-color);
-}
-
-.option-card input[type="checkbox"] {
-    border-radius: 6px;
-}
-
-.option-card input[type="checkbox"]:checked::after {
-    border-radius: 3px;
-    width: 10px;
-    height: 10px;
-}
-
-/* ---- Conditional field group ---- */
-.conditional-field {
-    margin-top: 1.2rem;
-    padding-top: 0.5rem;
-    animation: fadeIn 0.25s ease;
-}
-
-.conditional-field label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ---- Buttons ---- */
-.nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.btn-gold,
-.btn-outline {
-    font-family: 'Parkinsans', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    border-radius: var(--radius-btn);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    border: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.btn-gold {
-    background: linear-gradient(135deg, var(--accent-gold), #C19A2B);
-    color: #000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255,255,255,0.2);
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-}
-
-.btn-gold:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
-}
-
-.btn-gold:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.btn-outline {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border-highlight);
-    flex: 0 0 auto;
-    padding: 1rem 1.8rem;
-}
-
-.btn-outline:hover {
-    border-color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.08);
-}
-
-.btn-outline:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* ---- Validation message ---- */
-.form-message {
-    margin-top: 1rem;
-    min-height: 2rem;
-    font-size: 1rem;
-    color: #f4b8b8;
-    text-align: center;
-    font-weight: 500;
-    transition: opacity var(--transition-fast);
-}
-
-/* ---- Honeypot (invisible) ---- */
-.honeypot-field {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-}
-
-/* ---- Success & Error views ---- */
-.success-box,
-.error-box {
-    text-align: center;
-    padding: 3.5rem 2rem;
-    margin-top: 3rem;
-}
-
-.success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 6vw, 4rem);
-    color: var(--accent-gold);
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-}
-
-.success-text {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.success-signoff {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    color: var(--accent-gold);
-    font-style: italic;
-    margin-bottom: 2.5rem;
-}
-
-.error-text {
-    font-size: 1.2rem;
-    color: #f4b8b8;
-    margin-bottom: 2rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-}
-
-/* ---- Preflight notice (slim capsule, inline with text) ---- */
+/* ---- Preflight Notice Collapsible Dropdown ---- */
 .preflight-notice {
-    margin: 0.25rem 0 1rem 0;
-    padding: 0;
-    font-size: 0.8rem;
-    overflow: visible;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    display: inline-block;
+  margin: 0.5rem 0 1.5rem 0;
+  font-size: 0.9rem;
 }
 
 .preflight-notice summary {
-    list-style: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.3rem 0.75rem;
-    background: rgba(0, 30, 60, 0.5);
-    border: 1px solid var(--border-subtle);
-    border-radius: 999px;
-    color: var(--accent-gold);
-    font-weight: 500;
-    font-family: 'Parkinsans', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.01em;
-    line-height: 1;
-    -webkit-tap-highlight-color: transparent;
-    transition: background var(--transition-fast), border-color var(--transition-fast);
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  background: rgba(0, 30, 60, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--accent-gold);
+  font-weight: 500;
+  font-family: 'Parkinsans', sans-serif;
+  letter-spacing: 0.01em;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .preflight-notice summary::-webkit-details-marker { display: none; }
 
 .preflight-notice summary::before {
-    content: "▸";
-    display: inline-block;
-    font-size: 0.6rem;
-    transform: translateY(1px);
-    transition: transform var(--transition-fast);
+  content: "▸";
+  display: inline-block;
+  font-size: 0.75rem;
+  transform: translateY(1px);
+  transition: transform var(--transition-fast);
 }
 
-.preflight-notice[open] summary::before { transform: translateY(1px) rotate(90deg); }
+.preflight-notice[open] summary::before {
+  transform: translateY(1px) rotate(90deg);
+}
 
 .preflight-notice summary:hover {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: var(--border-highlight);
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--border-highlight);
 }
 
 .preflight-inner {
-    margin-top: 0.6rem;
-    padding: 0.85rem 1rem;
-    background: rgba(0, 30, 60, 0.5);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    color: var(--text-muted);
-    line-height: 1.5;
-    font-size: 0.82rem;
-    max-width: 100%;
+  margin-top: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(0, 30, 60, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.92rem;
 }
 
 .preflight-inner p {
-    margin-bottom: 0.55rem;
+  margin-bottom: 0.65rem;
 }
 
-.preflight-inner p:last-child { margin-bottom: 0; }
-
-.preflight-inner strong { color: var(--text-primary); font-weight: 600; }
-
-.preflight-emoji { margin-right: 0.1rem; }
-
-/* Inline security callout — shown on the final step */
-.security-callout {
-    margin-top: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(212, 175, 55, 0.08);
-    border-left: 3px solid var(--accent-gold);
-    border-radius: 8px;
-    font-size: 0.82rem;
-    line-height: 1.5;
-    color: var(--text-primary);
+.preflight-inner p:last-child {
+  margin-bottom: 0;
 }
 
-.security-callout strong { color: var(--accent-gold); }
-
-/* ---- Responsive adjustments ---- */
-@media (max-width: 768px) {
-    .container {
-        padding: 1rem 1rem 5rem 1rem;
-    }
-    .glass-box {
-        padding: 1.8rem 1.5rem;
-    }
-    .step-box {
-        min-height: 280px;
-    }
-    .step-question {
-        font-size: 2rem;
-    }
-    .nav-buttons {
-        flex-wrap: wrap;
-    }
-    .btn-outline {
-        flex: 1;
-        padding: 0.9rem 1.2rem;
-        font-size: 1rem;
-    }
-    .btn-gold {
-        flex: 1;
-        padding: 0.9rem 1.2rem;
-        font-size: 1rem;
-    }
-    .option-card {
-        padding: 0.9rem 1rem;
-        font-size: 1rem;
-    }
+.preflight-inner strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-@media (max-width: 480px) {
-    .step-question {
-        font-size: 1.7rem;
-    }
-    .step-support {
-        font-size: 0.95rem;
-    }
-    .glass-box {
-        padding: 1.5rem 1.2rem;
-        border-radius: 16px;
-    }
-    .nav-buttons {
-        gap: 0.6rem;
-    }
-    .btn-outline,
-    .btn-gold {
-        padding: 0.8rem 1rem;
-        font-size: 0.95rem;
-    }
+.preflight-emoji {
+  margin-right: 0.25rem;
 }
 
-/* ---- Reduced motion ---- */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-    }
-    .step-box {
-        transition: none;
-    }
-    .progress-bar-fill {
-        transition: none;
-    }
+/* ---- Progress Header ---- */
+.progress-area {
+  margin-bottom: 0.5rem;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-gold), #FFF);
+  border-radius: 4px;
+  transition: width var(--transition-smooth);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* ---- Step Container Card (Glassmorphism) ---- */
+.glass-box {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-highlight);
+  border-radius: var(--radius-card);
+  padding: 2.25rem;
+  margin: 1rem 0 1.5rem 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.step-box {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ---- Dynamic Header Elements (Injected by script.js) ---- */
+.step-header {
+  margin-bottom: 1.5rem;
+}
+
+.step-title,
+.step-question {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.8vw, 2.5rem);
+  color: var(--accent-gold);
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+.step-subtitle,
+.step-support {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ---- Form Step Body & Inputs ---- */
+.step-body {
+  width: 100%;
+}
+
+.form-input,
+.form-textarea,
+.step-input,
+.step-textarea {
+  width: 100%;
+  background: rgba(0, 20, 40, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-highlight);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  font-family: 'Parkinsans', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.form-textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(186, 206, 233, 0.45);
+  font-weight: 300;
+}
+
+/* ---- Options Card Group (Radio & Checkbox) ---- */
+.options-group,
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 1.15rem;
+  background: rgba(0, 30, 60, 0.45);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+  font-size: 1.02rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-card:hover {
+  border-color: var(--border-highlight);
+  background: rgba(0, 45, 90, 0.6);
+}
+
+.option-card.selected {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 0 1px var(--accent-gold);
+}
+
+.option-card input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-highlight);
+  border-radius: 50%;
+  margin: 0;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.option-card input[type="radio"]:checked {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold);
+}
+
+.option-card input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg-color);
+}
+
+/* ---- Contact Group Component ---- */
+.contact-group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.form-select {
+  width: 100%;
+  background: rgba(0, 25, 50, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-highlight);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  font-family: 'Parkinsans', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+.form-select option {
+  background: #001A33;
+  color: var(--text-primary);
+  padding: 0.5rem;
+}
+
+/* ---- Navigation Buttons ---- */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-gold,
+.btn-outline {
+  font-family: 'Parkinsans', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--accent-gold), #C19A2B);
+  color: #000;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255,255,255,0.25);
+  flex: 1;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
+}
+
+.btn-gold:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-highlight);
+  flex: 0 0 auto;
+  padding: 0.95rem 1.8rem;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---- Validation & Feedback ---- */
+.form-message {
+  margin-top: 1rem;
+  min-height: 1.8rem;
+  font-size: 0.95rem;
+  color: #F4B8B8;
+  text-align: center;
+  font-weight: 500;
+  transition: opacity var(--transition-fast);
+  opacity: 0;
+}
+
+/* ---- Anti-Spam Honeypot ---- */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* ---- Success & Error Screens ---- */
+.success-box,
+.error-box {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--accent-gold);
+  margin-bottom: 1.25rem;
+}
+
+.success-text {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.success-signoff {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  color: var(--accent-gold);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.error-text {
+  font-size: 1.1rem;
+  color: #F4B8B8;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Responsive Formatting ---- */
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem 1rem 4rem 1rem;
+  }
+  .glass-box {
+    padding: 1.5rem;
+  }
+  .step-title {
+    font-size: 1.7rem;
+  }
+  .option-card {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+  .btn-gold,
+  .btn-outline {
+    padding: 0.85rem 1.4rem;
+    font-size: 1rem;
+  }
 }
