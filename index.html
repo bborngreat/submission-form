@@ -2,92 +2,414 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Task Submission Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome — Schedule Janitor</title>
     <script data-goatcounter="https://bborngreat.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
-    <!-- Google Fonts: Cormorant Garamond & Parkinsans (same as homepage) -->
+    <!-- Google Fonts: Cormorant Garamond (Headings) & Parkinsans (Body Text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Parkinsans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Parkinsans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #001A33;
+            --card-bg: rgba(0, 40, 80, 0.55);
+            --card-hover-bg: rgba(0, 50, 100, 0.75);
+            --border-subtle: rgba(212, 175, 55, 0.15);
+            --border-highlight: rgba(212, 175, 55, 0.4);
+            --text-primary: #EDEADE;
+            --text-muted: #BACEE9;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #F0C846;
+            --accent-glow: rgba(212, 175, 55, 0.25);
+            --max-width: 760px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 4px;
+            border-radius: 6px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size: 40px 40px, 40px 40px;
+            color: var(--text-primary);
+            font-family: 'Parkinsans', sans-serif;
+            line-height: 1.75;
+            font-size: 1.1rem;
+            overflow-x: hidden;
+            padding-top: 4px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), #FFF);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease-out;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Headshot */
+        .headshot-wrapper {
+            margin: 0 auto 2rem auto;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 0 30px var(--accent-glow), 0 12px 25px rgba(0, 0, 0, 0.6);
+            background-color: var(--bg-color);
+            position: relative;
+        }
+
+        .headshot-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 90%;
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 1rem 0 1.5rem 0;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Parkinsans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--accent-gold);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 em {
+            color: var(--text-primary);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 400;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Choice Cards */
+        .choice-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 1rem 0 2.5rem 0;
+        }
+
+        .choice-card {
+            display: block;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-top: 1px solid var(--border-highlight);
+            border-radius: 20px;
+            padding: 1.75rem 1.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .choice-card:hover {
+            border-color: var(--accent-gold);
+            background: var(--card-hover-bg);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px rgba(212, 175, 55, 0.15), 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .choice-card-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+
+        .choice-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-highlight);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover .choice-icon {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        .choice-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .choice-role {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .choice-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .choice-arrow {
+            flex-shrink: 0;
+            align-self: center;
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover .choice-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        /* Sign-off */
+        .signoff {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .signoff-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+        }
+
+        .signoff-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 0.01em;
+        }
+
+        .signoff-role {
+            font-family: 'Parkinsans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 0 0.75rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-gold-hover);
+            text-decoration: underline;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 1rem 2rem 1rem;
+            }
+            .choice-card {
+                padding: 1.35rem 1.25rem;
+            }
+            .choice-card-inner {
+                gap: 1rem;
+            }
+            .choice-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.25rem;
+            }
+            .choice-role {
+                font-size: 1.3rem;
+            }
+            .choice-desc {
+                font-size: 0.95rem;
+            }
+            .headshot-wrapper {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Scroll Progress Bar (optional, kept for brand consistency) -->
+    <!-- Scroll Progress Indicator -->
     <div id="scroll-progress"></div>
 
-    <!-- Minimal header (hamburger removed for focused flow; brand mark preserved) -->
-    <header class="site-header minimal-header">
-        <div class="header-inner">
-            <span class="brand-mark">Task Submission Portal</span>
+    <div class="container">
+
+        <!-- Headshot -->
+        <div class="headshot-wrapper">
+            <img src="1788311590795.png" alt="Bright Borngreat - Schedule Janitor" onerror="this.src='https://placehold.co/140x140/001A33/D4AF37?text=Bright';">
         </div>
-    </header>
 
-    <!-- Main container – holds either the form or success/error states -->
-    <div class="container" id="app-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <p class="hero-eyebrow">Real Quick Before You Go…</p>
+            <h1>Which role best describes <em>you?</em></h1>
+            <p class="lead">Don't worry, this isn't some kinda weird Google tracking thing. It's just so you can be shown only what's relevant to you and your needs, so your time isn't wasted.</p>
+        </section>
 
-        <!-- Preflight notice: collapsible, visible on every step -->
-        <details class="preflight-notice">
-            <summary>Quick heads up before you send this</summary>
-            <div class="preflight-inner">
-                <p><span class="preflight-emoji">🤏</span> <strong>Pricing:</strong> I'll confirm whether I can do it and quote you a flat price before any work starts. Typically $5 to $30+, depending on the job.</p>
-                <p><span class="preflight-emoji">⏪</span> <strong>Revisions:</strong> One revision is included if something's off or missed from your original request.</p>
-                <p><span class="preflight-emoji">🧾</span> <strong>Payment:</strong> You only pay after you've previewed the work and you're happy with it.</p>
-                <p><span class="preflight-emoji">🔐</span> <strong>Security:</strong> Please don't put passwords, logins, banking details or ID numbers in this form. I'll never ask for them.</p>
-            </div>
-        </details>
+        <!-- Choice Cards -->
+        <div class="choice-container">
 
-        <!-- FORM VIEW (initially visible) -->
-        <div id="form-view">
-            <!-- Progress header -->
-            <div class="progress-area">
-                <div class="progress-text">
-                    <span id="step-counter">01 / 07</span>
+            <!-- Personal Option -->
+            <a href="personal.html" class="choice-card">
+                <div class="choice-card-inner">
+                    <div class="choice-icon" aria-hidden="true">🧑‍💻</div>
+                    <div class="choice-content">
+                        <div class="choice-role">I'm an individual</div>
+                        <div class="choice-desc">A professional, student, or individual with an annoying task I wanna get rid of.</div>
+                    </div>
+                    <div class="choice-arrow" aria-hidden="true">→</div>
                 </div>
-                <div class="progress-bar-track">
-                    <div class="progress-bar-fill" id="progress-fill"></div>
+            </a>
+
+            <!-- Business Option -->
+            <a href="business.html" class="choice-card">
+                <div class="choice-card-inner">
+                    <div class="choice-icon" aria-hidden="true">🚀</div>
+                    <div class="choice-content">
+                        <div class="choice-role">I'm a founder</div>
+                        <div class="choice-desc">An entrepreneur, freelancer, or founder with an operational bottleneck I'm looking to delegate.</div>
+                    </div>
+                    <div class="choice-arrow" aria-hidden="true">→</div>
                 </div>
-            </div>
+            </a>
 
-            <!-- Step container (single question shown at a time) -->
-            <div id="step-container" class="glass-box step-box">
-                <!-- Steps injected by JavaScript -->
-            </div>
-
-            <!-- Navigation buttons -->
-            <div class="nav-buttons">
-                <button type="button" id="back-btn" class="btn-outline" aria-label="Previous question">Back</button>
-                <button type="button" id="next-btn" class="btn-gold" aria-label="Next question">Next</button>
-                <button type="button" id="submit-btn" class="btn-gold hidden" aria-label="Submit request">Send my request</button>
-            </div>
-
-            <!-- Live region for validation / status messages -->
-            <div id="form-message" class="form-message" aria-live="polite"></div>
-
-            <!-- Honeypot field (invisible) -->
-            <div class="honeypot-field" aria-hidden="true">
-                <label for="website">Website</label>
-                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-            </div>
         </div>
 
-        <!-- SUCCESS VIEW (hidden by default) -->
-        <div id="success-view" class="glass-box success-box hidden">
-            <h2 class="success-title">Got it.</h2>
-            <p class="success-text">Your request has been sent. I'll look it over and get back to you using the contact method you selected.</p>
-            <p class="success-signoff">Talk soon.</p>
-            <a href="https://bborngreat.github.io/schedule-janitor/" class="btn-gold" id="back-home-btn">Back to Schedule Janitor</a>
+        <!-- Sign-off -->
+        <div class="signoff">
+            <p class="signoff-text">Check the right box, and let's meet on the other side.</p>
+            <p class="signoff-name">Bright</p>
+            <p class="signoff-role">The Schedule Janitor</p>
         </div>
 
-        <!-- ERROR VIEW (hidden by default, shown only on submission failure) -->
-        <div id="error-view" class="glass-box error-box hidden">
-            <p class="error-text" id="error-message-text">Something went wrong while sending that. Your answers are still here. Check your connection and try again.</p>
-            <button type="button" class="btn-gold" id="retry-btn">Try again</button>
-        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="faq.html">FAQs</a> |
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <p style="margin-top: 0.75rem;">Bright Borngreat &copy; <span id="current-year"></span>. Schedule Janitor Operations. All rights reserved.</p>
+        </footer>
 
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Scroll progress bar logic
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        // Dynamic copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Keyboard shortcut: press 1 for personal, 2 for business
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1') {
+                window.location.href = 'personal.html';
+            } else if (e.key === '2') {
+                window.location.href = 'business.html';
+            }
+        });
+    </script>
 </body>
 </html>
