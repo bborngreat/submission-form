@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Task Directive Portal - Schedule Janitor</title>
+    <script data-goatcounter="https://bborngreat.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <!-- Google Fonts: Cormorant Garamond & Parkinsans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Parkinsans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Minimal Header -->
+    <header class="site-header minimal-header">
+        <div class="header-inner">
+            <span class="brand-mark">Schedule Janitor — Task Directive Portal</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container" id="app-container">
+
+        <!-- Preflight Notice -->
+        <details class="preflight-notice">
+            <summary>Quick heads up before you send this</summary>
+            <div class="preflight-inner">
+                <p><span class="preflight-emoji">🤏</span> <strong>Pricing:</strong> Flat-rate quotes are based strictly on scope—small data cleanup or document polish tasks start around $25–$50, with custom automations quoted per scope.</p>
+                <p><span class="preflight-emoji">⏪</span> <strong>Revisions:</strong> One revision is included if something's off or missed from your original request.</p>
+                <p><span class="preflight-emoji">🧾</span> <strong>Payment:</strong> You only pay after you've previewed the work and you're happy with it.</p>
+                <p><span class="preflight-emoji">🔐</span> <strong>Security:</strong> Never share root account passwords or banking details. For tool integrations or data tasks, we use restricted worker API keys or sanitized sample data.</p>
+            </div>
+        </details>
+
+        <!-- FORM VIEW -->
+        <div id="form-view">
+            <!-- Progress Header -->
+            <div class="progress-area">
+                <div class="progress-text">
+                    <span id="step-counter">01 / 07</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Step Container (Dynamic elements rendered here by script.js) -->
+            <div id="step-container" class="glass-box step-box">
+                <!-- Steps injected by JavaScript -->
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button type="button" id="back-btn" class="btn-outline" aria-label="Previous question">Back</button>
+                <button type="button" id="next-btn" class="btn-gold" aria-label="Next question">Next</button>
+                <button type="button" id="submit-btn" class="btn-gold hidden" aria-label="Submit request">Send my request</button>
+            </div>
+
+            <!-- Validation/Status Message -->
+            <div id="form-message" class="form-message" aria-live="polite"></div>
+
+            <!-- Honeypot Field -->
+            <div class="honeypot-field" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- SUCCESS VIEW -->
+        <div id="success-view" class="glass-box success-box hidden">
+            <h2 class="success-title">Got it.</h2>
+            <p class="success-text">Your task directive has been received. I review all briefs within 2 hours and will send over a flat-rate quote via your preferred contact method.</p>
+            <p class="success-signoff">Talk soon.</p>
+            <a href="https://bborngreat.github.io/schedule-janitor/business.html" class="btn-gold" id="back-home-btn">Back to Schedule Janitor</a>
+        </div>
+
+        <!-- ERROR VIEW -->
+        <div id="error-view" class="glass-box error-box hidden">
+            <p class="error-text" id="error-message-text">Something went wrong while sending that. Your answers are still here. Check your connection and try again.</p>
+            <button type="button" class="btn-gold" id="retry-btn">Try again</button>
+        </div>
+
+    </div>
+
+    <script src="business.js"></script>
+</body>
+</html>
