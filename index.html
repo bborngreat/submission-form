@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Task Directive Portal - Schedule Janitor</title>
+    <title>Task Submission Form</title>
     <script data-goatcounter="https://bborngreat.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
-    <!-- Google Fonts: Cormorant Garamond & Parkinsans -->
+    <!-- Google Fonts: Cormorant Garamond & Parkinsans (same as homepage) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Parkinsans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,33 +14,33 @@
 </head>
 <body>
 
-    <!-- Scroll Progress Bar -->
+    <!-- Scroll Progress Bar (optional, kept for brand consistency) -->
     <div id="scroll-progress"></div>
 
-    <!-- Minimal Header -->
+    <!-- Minimal header (hamburger removed for focused flow; brand mark preserved) -->
     <header class="site-header minimal-header">
         <div class="header-inner">
-            <span class="brand-mark">Schedule Janitor — Task Directive Portal</span>
+            <span class="brand-mark">Task Submission Portal</span>
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main container – holds either the form or success/error states -->
     <div class="container" id="app-container">
 
-        <!-- Preflight Notice -->
+        <!-- Preflight notice: collapsible, visible on every step -->
         <details class="preflight-notice">
             <summary>Quick heads up before you send this</summary>
             <div class="preflight-inner">
-                <p><span class="preflight-emoji">🤏</span> <strong>Pricing:</strong> Flat-rate quotes are based strictly on scope—small data cleanup or document polish tasks start around $25–$50, with custom automations quoted per scope.</p>
+                <p><span class="preflight-emoji">🤏</span> <strong>Pricing:</strong> I'll confirm whether I can do it and quote you a flat price before any work starts. Typically $5 to $30+, depending on the job.</p>
                 <p><span class="preflight-emoji">⏪</span> <strong>Revisions:</strong> One revision is included if something's off or missed from your original request.</p>
                 <p><span class="preflight-emoji">🧾</span> <strong>Payment:</strong> You only pay after you've previewed the work and you're happy with it.</p>
-                <p><span class="preflight-emoji">🔐</span> <strong>Security:</strong> Never share root account passwords or banking details. For tool integrations or data tasks, we use restricted worker API keys or sanitized sample data.</p>
+                <p><span class="preflight-emoji">🔐</span> <strong>Security:</strong> Please don't put passwords, logins, banking details or ID numbers in this form. I'll never ask for them.</p>
             </div>
         </details>
 
-        <!-- FORM VIEW -->
+        <!-- FORM VIEW (initially visible) -->
         <div id="form-view">
-            <!-- Progress Header -->
+            <!-- Progress header -->
             <div class="progress-area">
                 <div class="progress-text">
                     <span id="step-counter">01 / 07</span>
@@ -50,37 +50,37 @@
                 </div>
             </div>
 
-            <!-- Step Container (Dynamic elements rendered here by script.js) -->
+            <!-- Step container (single question shown at a time) -->
             <div id="step-container" class="glass-box step-box">
                 <!-- Steps injected by JavaScript -->
             </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Navigation buttons -->
             <div class="nav-buttons">
                 <button type="button" id="back-btn" class="btn-outline" aria-label="Previous question">Back</button>
                 <button type="button" id="next-btn" class="btn-gold" aria-label="Next question">Next</button>
                 <button type="button" id="submit-btn" class="btn-gold hidden" aria-label="Submit request">Send my request</button>
             </div>
 
-            <!-- Validation/Status Message -->
+            <!-- Live region for validation / status messages -->
             <div id="form-message" class="form-message" aria-live="polite"></div>
 
-            <!-- Honeypot Field -->
+            <!-- Honeypot field (invisible) -->
             <div class="honeypot-field" aria-hidden="true">
                 <label for="website">Website</label>
                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
         </div>
 
-        <!-- SUCCESS VIEW -->
+        <!-- SUCCESS VIEW (hidden by default) -->
         <div id="success-view" class="glass-box success-box hidden">
             <h2 class="success-title">Got it.</h2>
-            <p class="success-text">Your task directive has been received. I review all briefs within 2 hours and will send over a flat-rate quote via your preferred contact method.</p>
+            <p class="success-text">Your request has been sent. I'll look it over and get back to you using the contact method you selected.</p>
             <p class="success-signoff">Talk soon.</p>
-            <a href="https://bborngreat.github.io/schedule-janitor/" class="btn-gold" id="back-home-btn">Back to Schedule Janitor</a>
+            <a href="https://bborngreat.github.io/schedule-janitor/" class="btn-gold" id="back-home-btn">Back to Mr. OddJobs</a>
         </div>
 
-        <!-- ERROR VIEW -->
+        <!-- ERROR VIEW (hidden by default, shown only on submission failure) -->
         <div id="error-view" class="glass-box error-box hidden">
             <p class="error-text" id="error-message-text">Something went wrong while sending that. Your answers are still here. Check your connection and try again.</p>
             <button type="button" class="btn-gold" id="retry-btn">Try again</button>
