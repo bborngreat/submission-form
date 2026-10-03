@@ -548,7 +548,7 @@ function buildSubmissionData() {
     const email = contactDetails.email || "";
 
     // Construct human-readable message
-    let message = `MR. ODDJOBS TASK REQUEST\n\n`;
+    let message = `SCHEDULE JANITOR TASK REQUEST\n\n`;
     message += `Name:\n${name}\n\n`;
     message += `Task:\n${task}\n\n`;
     message += `Category:\n${category}\n\n`;
@@ -563,8 +563,8 @@ function buildSubmissionData() {
     // Web3Forms payload
     const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `New Mr. OddJobs task request from ${name}`,
-        from_name: "Mr. OddJobs Task Form",
+        subject: `New Schedule Janitor task request from ${name}`,
+        from_name: "Schedule Janitor Task Form",
         name: name,
         message: message.trim()
     };
